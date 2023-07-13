@@ -22,9 +22,9 @@ import (
 	"net/http"
 	"os"
 
-	"github.com/IzakMarais/reporter/grafana"
-	"github.com/IzakMarais/reporter/report"
 	"github.com/gorilla/mux"
+	"github.com/sq325/grafana-reporter/grafana"
+	"github.com/sq325/grafana-reporter/report"
 )
 
 var proto = flag.String("proto", "http://", "Grafana Protocol. Change to 'https://' if Grafana is using https. Reporter will still serve http.")
@@ -34,7 +34,7 @@ var templateDir = flag.String("templates", "templates/", "Directory for custom T
 var sslCheck = flag.Bool("ssl-check", true, "Check the SSL issuer and validity. Set this to false if your Grafana serves https using an unverified, self-signed certificate.")
 var gridLayout = flag.Bool("grid-layout", false, "Enable grid layout (-grid-layout=1). Panel width and height will be calculated based off Grafana gridPos width and height.")
 
-//cmd line mode params
+// cmd line mode params
 var cmdMode = flag.Bool("cmd_enable", false, "Enable command line mode. Generate report from command line without starting webserver (-cmd_enable=1).")
 var dashboard = flag.String("cmd_dashboard", "", "Dashboard identifier. Required (and only used) in command line mode.")
 var apiKey = flag.String("cmd_apiKey", "", "Grafana api key. Required (and only used) in command line mode.")

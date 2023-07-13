@@ -26,8 +26,8 @@ import (
 	"sync"
 	"text/template"
 
-	"github.com/IzakMarais/reporter/grafana"
 	"github.com/pborman/uuid"
+	"github.com/sq325/grafana-reporter/grafana"
 )
 
 // Report groups functions related to genrating the report.
