@@ -32,10 +32,10 @@ const defaultTemplate = `
 \includegraphics[width=\textwidth]{image[[.Id]]}
 \end{minipage}
 [[else]]\par
-\vspace{0.5cm}
+\vspace{0.2cm}
 \includegraphics[width=\textwidth]{image[[.Id]]}
 \par
-\vspace{0.5cm}
+\vspace{0.2cm}
 [[end]][[end]]
 
 \end{center}

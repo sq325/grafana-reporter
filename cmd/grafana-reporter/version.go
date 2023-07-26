@@ -16,8 +16,9 @@
 
 package main
 
-//When making new release also tag git repo and update Makefile docker-buil job
+// When making new release also tag git repo and update Makefile docker-buil job
 const generatedMajor = "2"
 const generatedMinor = "3"
-const generatedRelease = "0"
-const generatedGitHash = "124b9a35302b3e9d4746ec0cf643abfecda8c21d"
+const generatedRelease = "1"
+
+// const generatedGitHash = "124b9a35302b3e9d4746ec0cf643abfecda8c21d"

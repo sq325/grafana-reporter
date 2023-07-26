@@ -30,14 +30,14 @@ type TimeRange struct {
 }
 
 // Used to parse grafana time specifications. These can take various forms:
-//	 * relative: "now", "now-1h", "now-2d", "now-3w", "now-5M", "now-1y"
-//   * human friendly boundary:
-// 			From:"now/d" -> start of today
-//			To:  "now/d" -> end of today
-//			To:  "now/w" -> end of the week
-//			To:  "now-1d/d" -> end of yesterday
-//			When used as boundary, the same string will evaluate to a different time if used in 'From' or 'To'
-//	 * absolute unix time: "142321234"
+//   - relative: "now", "now-1h", "now-2d", "now-3w", "now-5M", "now-1y"
+//   - human friendly boundary:
+//     From:"now/d" -> start of today
+//     To:  "now/d" -> end of today
+//     To:  "now/w" -> end of the week
+//     To:  "now-1d/d" -> end of yesterday
+//     When used as boundary, the same string will evaluate to a different time if used in 'From' or 'To'
+//   - absolute unix time: "142321234"
 //
 // The required behaviour is clearly documented in the unit tests, time_test.go.
 type now time.Time
@@ -54,13 +54,17 @@ const (
 	boundaryTimeRegExp = "^(.*?)/([dwMy])$"
 )
 
+var (
+	loc, _ = time.LoadLocation("Asia/Shanghai")
+)
+
 func init() {
 	log.SetOutput(ioutil.Discard)
 }
 
 func NewTimeRange(from, to string) TimeRange {
 	if from == "" {
-		from = "now-1h"
+		from = "now-1d"
 	}
 	if to == "" {
 		to = "now"
@@ -71,13 +75,13 @@ func NewTimeRange(from, to string) TimeRange {
 // Formats Grafana 'From' time spec into absolute printable time
 func (tr TimeRange) FromFormatted() string {
 	n := newNow()
-	return n.parseFrom(tr.From).Format(time.UnixDate)
+	return n.parseFrom(tr.From).In(loc).Format("2006-01-02 15:04")
 }
 
 // Formats Grafana 'To' time spec into absolute printable time
 func (tr TimeRange) ToFormatted() string {
 	n := newNow()
-	return n.parseTo(tr.To).Format(time.UnixDate)
+	return n.parseTo(tr.To).In(loc).Format("2006-01-02 15:04")
 }
 
 func newNow() now {

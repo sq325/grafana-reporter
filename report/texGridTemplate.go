@@ -13,7 +13,7 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 
-   
+
 */
 
 package report
@@ -34,10 +34,10 @@ const defaultGridTemplate = `
 \includegraphics[width=\textwidth]{image[[.Id]]}
 \end{minipage}
 [[else]]\par
-\vspace{0.5cm}
+\vspace{0.2cm}
 \includegraphics[width=\textwidth]{image[[.Id]]}
 \par
-\vspace{0.5cm}
+\vspace{0.2cm}
 [[end]][[end]]
 
 \end{center}

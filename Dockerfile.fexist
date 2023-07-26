@@ -1,0 +1,3 @@
+FROM izakmarais/grafana-reporter:latest
+COPY ./cmd/grafana-reporter/grafana-reporter /app/grafana-reporter
+ENTRYPOINT [ "/app/grafana-reporter" ]

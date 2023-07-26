@@ -48,7 +48,7 @@ func main() {
 	log.SetOutput(os.Stdout)
 
 	//'generated*'' variables injected from build.gradle: task 'injectGoVersion()'
-	log.Printf("grafana reporter, version: %s.%s-%s hash: %s", generatedMajor, generatedMinor, generatedRelease, generatedGitHash)
+	log.Printf("grafana reporter, version: %s.%s-%s", generatedMajor, generatedMinor, generatedRelease)
 	log.Printf("serving at '%s' and using grafana at '%s'", *port, *proto+*ip)
 	if !*sslCheck {
 		log.Printf("SSL check disabled")

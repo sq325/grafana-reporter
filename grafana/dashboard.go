@@ -149,10 +149,7 @@ func (p Panel) Height() float64 {
 }
 
 func (p Panel) Is(t PanelType) bool {
-	if p.Type == t.string() {
-		return true
-	}
-	return false
+	return p.Type == t.string()
 }
 
 func (r Row) IsVisible() bool {

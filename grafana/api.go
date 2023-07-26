@@ -124,7 +124,7 @@ func (g client) GetPanelPng(p Panel, dashName string, t TimeRange) (io.ReadClose
 	}
 	client := &http.Client{
 		CheckRedirect: func(req *http.Request, via []*http.Request) error {
-			return errors.New("Error getting panel png. Redirected to login")
+			return errors.New("error getting panel png. Redirected to login")
 		},
 		Transport: tr,
 	}
@@ -183,7 +183,7 @@ func (g client) getPanelURL(p Panel, dashName string, t TimeRange) string {
 			values.Add("height", "100")
 		} else {
 			values.Add("width", "1000")
-			values.Add("height", "500")
+			values.Add("height", "400") // default 500
 		}
 	}
 
