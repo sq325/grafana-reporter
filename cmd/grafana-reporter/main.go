@@ -33,6 +33,7 @@ var port = flag.String("port", ":8686", "Port to serve on.")
 var templateDir = flag.String("templates", "templates/", "Directory for custom TeX templates.")
 var sslCheck = flag.Bool("ssl-check", true, "Check the SSL issuer and validity. Set this to false if your Grafana serves https using an unverified, self-signed certificate.")
 var gridLayout = flag.Bool("grid-layout", false, "Enable grid layout (-grid-layout=1). Panel width and height will be calculated based off Grafana gridPos width and height.")
+var logFile = flag.String("./grafana-report.log", "", "Log file. If not set, logs are written to stdout.")
 
 // cmd line mode params
 var cmdMode = flag.Bool("cmd_enable", false, "Enable command line mode. Generate report from command line without starting webserver (-cmd_enable=1).")
@@ -45,7 +46,12 @@ var template = flag.String("cmd_template", "", "Specify a custom TeX template fi
 
 func main() {
 	flag.Parse()
-	log.SetOutput(os.Stdout)
+	f, err := os.Create(*logFile)
+	if err != nil {
+		log.SetOutput(os.Stdout)
+		log.Printf("Failed to open log file '%s', using stdout: %v", *logFile, err)
+	}
+	log.SetOutput(f)
 
 	//'generated*'' variables injected from build.gradle: task 'injectGoVersion()'
 	log.Printf("grafana reporter, version: %s.%s-%s", generatedMajor, generatedMinor, generatedRelease)
